@@ -26,7 +26,8 @@ class pollingThread (threading.Thread):
 
 
     def is_not_safe(self, latlonglist, crimedata, dist):
-        gmaps = googlemaps.Client(key='AIzaSyA8a0z9Cby4WpWO2SlL6wYCaHGqLBYxhHY')
+        # Google Api key fpr Distance calculation to be provided here.
+        gmaps = googlemaps.Client(key='')
         result = gmaps.distance_matrix(origins=latlonglist, destinations=crimedata, mode='walking')
         result_length = len(result['rows'][0]['elements'])
         for i in range(0, result_length):
@@ -38,8 +39,9 @@ class pollingThread (threading.Thread):
 
     def send_message(self, latlonglist, contact, type):
         message = None
-        ACCOUNT_SID = "ACbeea8d1e3baf482a7bc898e785fb7b44"
-        AUTH_TOKEN = "c16077309642d3a722d4dab9907fd2cd"
+        # Twilio API Account SID and Auth token to update here
+        ACCOUNT_SID = "" 
+        AUTH_TOKEN = ""
         client = Client(ACCOUNT_SID, AUTH_TOKEN)
         number_string = "+1" + str(contact)
         if type == "time":
